@@ -1181,18 +1181,7 @@ const RomanceNovelWriter = () => {
       const minWords = Math.floor(targetWordCount * 0.9);
       const maxWords = Math.floor(targetWordCount * 1.1);
 
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 4000,
-          messages: [
-            {
-              role: "user",
-              content: `You are a professional romance novelist writing a scene for a ${currentSubgenre?.name || 'romance'} novel${currentEra ? ` set in the ${currentEra.name}` : ''}.
+      const promptText = `You are a professional romance novelist writing a scene for a ${currentSubgenre?.name || 'romance'} novel${currentEra ? ` set in the ${currentEra.name}` : ''}.
 
 SCENE BEAT: ${beatTitle}
 
@@ -1210,21 +1199,24 @@ CRITICAL REQUIREMENTS:
 6. Stay in close third-person POV
 7. Meet the target word count of ${targetWordCount} words
 
-Write the prose now, ensuring it's between ${minWords} and ${maxWords} words:`
-            }
-          ],
-        })
+Write the prose now, ensuring it's between ${minWords} and ${maxWords} words:`;
+
+      const response = await fetch("/api/generate-prose", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: promptText })
       });
 
       const data = await response.json();
-      const proseText = data.content
-        .filter(item => item.type === "text")
-        .map(item => item.text)
-        .join("\n");
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to generate prose');
+      }
 
       setGeneratedProse(prev => ({
         ...prev,
-        [beatKey]: proseText
+        [beatKey]: data.text
       }));
     } catch (error) {
       console.error("Error generating prose:", error);
