@@ -176,6 +176,270 @@ const RomanceNovelWriter = () => {
     }
   };
 
+  const maleTropesBySubgenre = {
+    'romantasy': [
+      { id: 'fae-prince', name: 'The Fae Prince', description: 'An otherworldly royal bound by ancient rules' },
+      { id: 'dragon-shifter', name: 'The Dragon Shifter', description: 'A warrior who commands fire and scale' },
+      { id: 'shadow-mage', name: 'The Shadow Mage', description: 'A sorcerer wielding forbidden magic' },
+      { id: 'immortal-guardian', name: 'The Immortal Guardian', description: 'A centuries-old protector sworn to a sacred duty' }
+    ],
+    'contemporary': [
+      { id: 'grumpy-neighbor', name: 'The Grumpy Neighbor', description: 'Guards his solitude fiercely' },
+      { id: 'single-dad', name: 'The Single Dad', description: 'A devoted father rebuilding his life' },
+      { id: 'workaholic-ceo', name: 'The Workaholic CEO', description: 'Married to his company until she walks in' },
+      { id: 'best-friends-brother', name: "The Best Friend's Brother", description: 'Off-limits and impossible to ignore' }
+    ],
+    'dark-romance': [
+      { id: 'ruthless-captor', name: 'The Ruthless Captor', description: 'Takes what he wants, no apologies' },
+      { id: 'vigilante', name: 'The Vigilante', description: 'Delivers his own brand of justice' },
+      { id: 'morally-gray', name: 'The Morally Gray Anti-Hero', description: 'Neither good nor safe' },
+      { id: 'possessive-protector', name: 'The Possessive Protector', description: 'Claims her as his to guard' }
+    ],
+    'billionaire': [
+      { id: 'billionaire-ceo', name: 'The Billionaire CEO', description: 'Commands an empire and expects to be obeyed' },
+      { id: 'secret-heir', name: 'The Secret Heir', description: 'Inherits a fortune he never wanted' },
+      { id: 'self-made-tycoon', name: 'The Self-Made Tycoon', description: 'Built his wealth from nothing' },
+      { id: 'reformed-playboy', name: 'The Reformed Playboy', description: 'Trading conquests for something real' }
+    ],
+    'small-town': [
+      { id: 'hometown-sheriff', name: 'The Hometown Sheriff', description: 'Keeps the peace and hides his heart' },
+      { id: 'returning-hero', name: 'The Returning Hero', description: 'Comes home changed by what he has seen' },
+      { id: 'small-town-doctor', name: 'The Small-Town Doctor', description: 'Heals everyone but himself' },
+      { id: 'reformed-bad-boy', name: 'The Reformed Bad Boy', description: 'Left his reputation behind, mostly' }
+    ],
+    'sports': [
+      { id: 'star-quarterback', name: 'The Star Quarterback', description: 'Carries the team and the pressure' },
+      { id: 'team-captain', name: 'The Team Captain', description: 'Leads on the ice and off' },
+      { id: 'retired-athlete-coach', name: 'The Retired Athlete Turned Coach', description: 'Building the next generation after his own career ended' },
+      { id: 'underdog-rookie', name: 'The Underdog Rookie', description: 'Fighting to prove he belongs' }
+    ],
+    'paranormal': [
+      { id: 'alpha-werewolf', name: 'The Alpha Werewolf', description: 'Leads his pack with an iron will' },
+      { id: 'ancient-vampire', name: 'The Ancient Vampire', description: 'Centuries of secrets behind his eyes' },
+      { id: 'guardian-angel', name: 'The Guardian Angel', description: 'Sworn to protect her, forbidden to love her' },
+      { id: 'cursed-immortal', name: 'The Cursed Immortal', description: 'Trapped by a curse only love can break' }
+    ],
+    'romantic-suspense': [
+      { id: 'undercover-agent', name: 'The Undercover Agent', description: 'Living a lie to catch the truth' },
+      { id: 'bodyguard', name: 'The Bodyguard', description: 'Sworn to protect her, tempted to want her' },
+      { id: 'detective', name: 'The Detective', description: 'Chases the case that leads straight to her' },
+      { id: 'ex-special-forces', name: 'The Ex-Special Forces Operative', description: 'Trained for war, unprepared for her' }
+    ],
+    'mafia': [
+      { id: 'mafia-don', name: 'The Mafia Don', description: "Rules his family's empire without mercy" },
+      { id: 'enforcer', name: 'The Enforcer', description: "Does the family's dirty work without question" },
+      { id: 'reluctant-heir', name: 'The Reluctant Heir', description: 'Never wanted the throne he is forced to take' },
+      { id: 'rival-family-son', name: "The Rival Family's Son", description: 'Loyalty and love are on a collision course' }
+    ]
+  };
+
+  const femaleTropesBySubgenre = {
+    'romantasy': [
+      { id: 'chosen-one', name: 'The Chosen One', description: 'Marked by a prophecy she never asked for' },
+      { id: 'rogue-witch', name: 'The Rogue Witch', description: "Untrained power she's desperate to control" },
+      { id: 'exiled-princess', name: 'The Exiled Princess', description: 'Stripped of her throne, fighting to reclaim it' },
+      { id: 'reluctant-oracle', name: 'The Reluctant Oracle', description: "Cursed with visions she can't escape" }
+    ],
+    'contemporary': [
+      { id: 'career-driven', name: 'The Career-Driven Achiever', description: 'Climbing the ladder, no time for love' },
+      { id: 'free-spirit', name: 'The Free Spirit', description: 'Lives by her own rules' },
+      { id: 'girl-next-door', name: 'The Girl Next Door', description: 'Overlooked but unforgettable' },
+      { id: 'runaway-bride', name: 'The Runaway Bride', description: 'Fled the altar to find herself' }
+    ],
+    'dark-romance': [
+      { id: 'reluctant-captive', name: 'The Reluctant Captive', description: 'Trapped but never broken' },
+      { id: 'broken-survivor', name: 'The Broken Survivor', description: 'Rebuilding herself from the wreckage' },
+      { id: 'fierce-avenger', name: 'The Fierce Avenger', description: "Hunting the people who wronged her" },
+      { id: 'innocent-pawn', name: 'The Innocent Pawn', description: "Caught in a game she didn't choose" }
+    ],
+    'billionaire': [
+      { id: 'struggling-assistant', name: 'The Struggling Assistant', description: 'Working paycheck to paycheck for him' },
+      { id: 'undercover-journalist', name: 'The Undercover Journalist', description: 'Chasing a story that gets personal' },
+      { id: 'small-town-girl', name: 'The Small-Town Girl', description: 'Out of her depth in his world' },
+      { id: 'ambitious-intern', name: 'The Ambitious Intern', description: 'Determined to prove she belongs' }
+    ],
+    'small-town': [
+      { id: 'city-girl-home', name: 'The City Girl Coming Home', description: "Back where she swore she'd never return" },
+      { id: 'bakery-owner', name: 'The Bakery Owner', description: 'Keeps the whole town fed and close-knit' },
+      { id: 'schoolteacher', name: 'The Schoolteacher', description: "Shapes the town's future one class at a time" },
+      { id: 'innkeeper', name: 'The Innkeeper', description: "Runs the heart of the town's hospitality" }
+    ],
+    'sports': [
+      { id: 'sports-journalist', name: 'The Sports Journalist', description: "Covers the game she's not supposed to fall for" },
+      { id: 'team-physician', name: 'The Team Physician', description: 'Keeps the athletes healthy and her guard up' },
+      { id: 'athletes-sister', name: "The Athlete's Sister", description: 'Knows the game better than most players' },
+      { id: 'rival-athlete', name: 'The Rival Athlete', description: 'Competes against him on principle' }
+    ],
+    'paranormal': [
+      { id: 'newly-turned', name: 'The Newly Turned', description: 'Adjusting to powers she never wanted' },
+      { id: 'awakening-witch', name: 'The Witch Awakening Her Powers', description: "Discovering a legacy she didn't know she had" },
+      { id: 'human-in-between', name: 'The Human Caught In Between', description: 'Ordinary girl in an extraordinary world' },
+      { id: 'huntress', name: 'The Huntress', description: 'Trained to kill his kind' }
+    ],
+    'romantic-suspense': [
+      { id: 'witness-in-hiding', name: 'The Witness in Hiding', description: 'Running from what she saw' },
+      { id: 'investigative-reporter', name: 'The Investigative Reporter', description: 'Digs for a story that puts her in danger' },
+      { id: 'fbi-profiler', name: 'The FBI Profiler', description: 'Reads everyone but him' },
+      { id: 'woman-with-secret-past', name: 'The Woman With a Secret Past', description: 'Reinvented herself to survive' }
+    ],
+    'mafia': [
+      { id: 'dons-daughter', name: "The Don's Daughter", description: 'Raised in the family business, wants out' },
+      { id: 'innocent-outsider', name: 'The Innocent Outsider', description: "Pulled into a world she doesn't understand" },
+      { id: 'undercover-cop', name: 'The Undercover Cop', description: 'Getting close enough to bring him down' },
+      { id: 'runaway-bride-to-be', name: 'The Runaway Bride-to-Be', description: 'Promised to one man, falling for another' }
+    ]
+  };
+
+  const characterNamesBySubgenre = {
+    'romantasy': {
+      male: { firstName: 'Cassian', surname: 'Draven' },
+      female: { firstName: 'Seraphine', surname: 'Ashwood' }
+    },
+    'contemporary': {
+      male: { firstName: 'Jake', surname: 'Sullivan' },
+      female: { firstName: 'Emma', surname: 'Reyes' }
+    },
+    'dark-romance': {
+      male: { firstName: 'Damien', surname: 'Voss' },
+      female: { firstName: 'Elena', surname: 'Cross' }
+    },
+    'billionaire': {
+      male: { firstName: 'Alexander', surname: 'Sterling' },
+      female: { firstName: 'Grace', surname: 'Bennett' }
+    },
+    'small-town': {
+      male: { firstName: 'Cole', surname: 'Bennett' },
+      female: { firstName: 'Maggie', surname: 'Reed' }
+    },
+    'sports': {
+      male: { firstName: 'Tyler', surname: 'Brooks' },
+      female: { firstName: 'Sydney', surname: 'Cole' }
+    },
+    'paranormal': {
+      male: { firstName: 'Ronan', surname: 'Blackwood' },
+      female: { firstName: 'Ivy', surname: 'Sorensen' }
+    },
+    'romantic-suspense': {
+      male: { firstName: 'Marcus', surname: 'Kane' },
+      female: { firstName: 'Olivia', surname: 'Hart' }
+    },
+    'mafia': {
+      male: { firstName: 'Dante', surname: 'Moretti' },
+      female: { firstName: 'Sofia', surname: 'Russo' }
+    }
+  };
+
+  const secondaryCharacterNamesBySubgenre = {
+    'romantasy': {
+      'best-friend': { firstName: 'Briar', surname: 'Nightsong' },
+      'rival': { firstName: 'Lady Isolde', surname: 'Thorne' },
+      'mentor': { firstName: 'Master', surname: 'Alaric' },
+      'villain': { firstName: 'Lord', surname: 'Malachai' },
+      'sibling': { firstName: 'Finn', surname: '' },
+      'parent': { firstName: 'Queen', surname: 'Maren' },
+      'servant': { firstName: 'Old Pell', surname: '' },
+      'ex-lover': { firstName: 'Lyra', surname: 'Duskwood' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Rosalind' },
+      'childhood-friend': { firstName: 'Tobias', surname: 'Hale' }
+    },
+    'contemporary': {
+      'best-friend': { firstName: 'Zoe', surname: 'Martinez' },
+      'rival': { firstName: 'Ashley', surname: 'Kane' },
+      'mentor': { firstName: 'Professor', surname: 'Lowe' },
+      'villain': { firstName: 'Richard', surname: 'Voss' },
+      'sibling': { firstName: 'Sam', surname: '' },
+      'parent': { firstName: 'Linda', surname: '' },
+      'servant': { firstName: 'Rosa', surname: '' },
+      'ex-lover': { firstName: 'Vanessa', surname: 'Cole' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Carol' },
+      'childhood-friend': { firstName: 'Danny', surname: 'Reyes' }
+    },
+    'dark-romance': {
+      'best-friend': { firstName: 'Nadia', surname: 'Cross' },
+      'rival': { firstName: 'Katya', surname: 'Ivanova' },
+      'mentor': { firstName: 'Viktor', surname: 'Sorin' },
+      'villain': { firstName: 'Adrian', surname: 'Vale' },
+      'sibling': { firstName: 'Nikolai', surname: '' },
+      'parent': { firstName: 'Bogdan', surname: '' },
+      'servant': { firstName: 'Ilsa', surname: '' },
+      'ex-lover': { firstName: 'Sabine', surname: 'Moreau' },
+      'matchmaker': { firstName: 'Madame', surname: 'Duval' },
+      'childhood-friend': { firstName: 'Luca', surname: 'Renard' }
+    },
+    'billionaire': {
+      'best-friend': { firstName: 'Priya', surname: 'Anand' },
+      'rival': { firstName: 'Vivian', surname: 'Ashcroft' },
+      'mentor': { firstName: 'Richard', surname: 'Chen' },
+      'villain': { firstName: 'Marcus', surname: 'Cole' },
+      'sibling': { firstName: 'Nathaniel', surname: '' },
+      'parent': { firstName: 'Eleanor', surname: 'Sterling' },
+      'servant': { firstName: 'Mr.', surname: 'Higgins' },
+      'ex-lover': { firstName: 'Bianca', surname: 'Wells' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Josephine' },
+      'childhood-friend': { firstName: 'Owen', surname: 'Bennett' }
+    },
+    'small-town': {
+      'best-friend': { firstName: 'Katie', surname: 'Brooks' },
+      'rival': { firstName: 'Brianne', surname: 'Hutchins' },
+      'mentor': { firstName: 'Doc', surname: 'Merritt' },
+      'villain': { firstName: 'Frank', surname: 'Doyle' },
+      'sibling': { firstName: 'Beth', surname: '' },
+      'parent': { firstName: 'Carl', surname: '' },
+      'servant': { firstName: 'Miss', surname: 'Patty' },
+      'ex-lover': { firstName: 'Jenna', surname: 'Ford' },
+      'matchmaker': { firstName: 'Mrs.', surname: 'Wren' },
+      'childhood-friend': { firstName: 'Danny', surname: 'Reed' }
+    },
+    'sports': {
+      'best-friend': { firstName: 'Marcus', surname: 'Lee' },
+      'rival': { firstName: 'Jordan', surname: 'Vance' },
+      'mentor': { firstName: 'Coach', surname: 'Riggins' },
+      'villain': { firstName: 'Derek', surname: 'Holt' },
+      'sibling': { firstName: 'Casey', surname: '' },
+      'parent': { firstName: 'Coach', surname: 'Cole' },
+      'servant': { firstName: 'Trainer', surname: 'Alvarez' },
+      'ex-lover': { firstName: 'Nicole', surname: 'Hayes' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Ruth' },
+      'childhood-friend': { firstName: 'Danny', surname: 'Cole' }
+    },
+    'paranormal': {
+      'best-friend': { firstName: 'Wren', surname: 'Halloway' },
+      'rival': { firstName: 'Selene', surname: 'Marlowe' },
+      'mentor': { firstName: 'Elder', surname: 'Corvin' },
+      'villain': { firstName: 'Malakai', surname: '' },
+      'sibling': { firstName: 'Asher', surname: '' },
+      'parent': { firstName: 'Elder', surname: 'Miriam' },
+      'servant': { firstName: 'Old', surname: 'Thomas' },
+      'ex-lover': { firstName: 'Seraphine', surname: 'Cole' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Odette' },
+      'childhood-friend': { firstName: 'Gideon', surname: 'Marsh' }
+    },
+    'romantic-suspense': {
+      'best-friend': { firstName: 'Rachel', surname: 'Kim' },
+      'rival': { firstName: 'Agent', surname: 'Vance' },
+      'mentor': { firstName: 'Captain', surname: 'Reyes' },
+      'villain': { firstName: 'Viktor', surname: 'Sladek' },
+      'sibling': { firstName: 'Danny', surname: '' },
+      'parent': { firstName: 'Frank', surname: 'Hart' },
+      'servant': { firstName: 'Ms.', surname: 'Delgado' },
+      'ex-lover': { firstName: 'Claire', surname: 'Bennett' },
+      'matchmaker': { firstName: 'Aunt', surname: 'Diane' },
+      'childhood-friend': { firstName: 'Mike', surname: 'Sanders' }
+    },
+    'mafia': {
+      'best-friend': { firstName: 'Isabella', surname: 'Conti' },
+      'rival': { firstName: 'Vittoria', surname: 'Marchetti' },
+      'mentor': { firstName: 'Uncle', surname: 'Salvatore' },
+      'villain': { firstName: 'Nico', surname: 'Falcone' },
+      'sibling': { firstName: 'Matteo', surname: '' },
+      'parent': { firstName: 'Don', surname: 'Russo' },
+      'servant': { firstName: 'Old', surname: 'Enzo' },
+      'ex-lover': { firstName: 'Carmen', surname: 'Vitale' },
+      'matchmaker': { firstName: 'Nonna', surname: 'Lucia' },
+      'childhood-friend': { firstName: 'Gio', surname: 'Ricci' }
+    }
+  };
+
   const plotTropes = [
     { id: 'forced-proximity', name: 'Forced Proximity', description: 'Stuck together by circumstances' },
     { id: 'enemies-to-lovers', name: 'Enemies to Lovers', description: 'Hatred transforms to passion' },
@@ -247,7 +511,7 @@ const RomanceNovelWriter = () => {
     // Beat 1: The Hook (Chapters 1-2)
     const hookBeats1 = [
       {
-        beat: `Establish the ${eraName} setting with vivid sensory details and period-appropriate context`,
+        beat: `Establish the ${eraName} with vivid sensory details and period-appropriate context`,
         prompt: `Write an opening paragraph that immerses the reader in the ${eraName}. Include specific sensory details: what the air smells like, what sounds are present, the quality of light, textures, and temperatures. Use period-appropriate vocabulary and references. Paint a vivid picture of the time and place - whether it's ${currentEra ? `the ${currentEra.period}` : 'the contemporary world'} - that makes the reader feel transported. Include 2-3 specific details unique to this era (clothing, transportation, social customs, technology level). Establish the tone that matches ${currentSubgenre.name}: ${currentSubgenre.description.toLowerCase()}.`
       },
       {
@@ -1149,20 +1413,32 @@ const RomanceNovelWriter = () => {
 
   const currentSubgenre = topSubgenres.find(s => s.id === selectedSubgenre);
   const currentEra = selectedSubgenre === 'historical' ? historicalEras.find(e => e.id === selectedEra) : null;
-  const currentMaleTropes = selectedSubgenre === 'historical' && selectedEra ? maleTropesByEra[selectedEra] : [];
-  const currentFemaleTropes = selectedSubgenre === 'historical' && selectedEra ? femaleTropesByEra[selectedEra] : [];
+  const currentMaleTropes = selectedSubgenre === 'historical'
+    ? (selectedEra ? maleTropesByEra[selectedEra] : [])
+    : (selectedSubgenre ? maleTropesBySubgenre[selectedSubgenre] || [] : []);
+  const currentFemaleTropes = selectedSubgenre === 'historical'
+    ? (selectedEra ? femaleTropesByEra[selectedEra] : [])
+    : (selectedSubgenre ? femaleTropesBySubgenre[selectedSubgenre] || [] : []);
 
-  const heroName = selectedEra && characterNamesByEra[selectedEra] 
-    ? `${characterNamesByEra[selectedEra].male.firstName} ${characterNamesByEra[selectedEra].male.surname}`
+  const currentCharacterNames = selectedSubgenre === 'historical'
+    ? (selectedEra ? characterNamesByEra[selectedEra] : null)
+    : (selectedSubgenre ? characterNamesBySubgenre[selectedSubgenre] : null);
+
+  const heroName = currentCharacterNames
+    ? `${currentCharacterNames.male.firstName} ${currentCharacterNames.male.surname}`
     : 'Hero';
-  const heroineName = selectedEra && characterNamesByEra[selectedEra]
-    ? `${characterNamesByEra[selectedEra].female.firstName} ${characterNamesByEra[selectedEra].female.surname}`
+  const heroineName = currentCharacterNames
+    ? `${currentCharacterNames.female.firstName} ${currentCharacterNames.female.surname}`
     : 'Heroine';
 
-  const secondaryNames = selectedEra && secondaryCharacterNamesByEra[selectedEra]
+  const currentSecondaryCharacterNames = selectedSubgenre === 'historical'
+    ? (selectedEra ? secondaryCharacterNamesByEra[selectedEra] : null)
+    : (selectedSubgenre ? secondaryCharacterNamesBySubgenre[selectedSubgenre] : null);
+
+  const secondaryNames = currentSecondaryCharacterNames
     ? selectedSecondaryCharacters.reduce((acc, charId) => {
-        const char = secondaryCharacterNamesByEra[selectedEra][charId];
-        acc[charId] = char.surname 
+        const char = currentSecondaryCharacterNames[charId];
+        acc[charId] = char.surname
           ? `${char.firstName} ${char.surname}`
           : char.firstName;
         return acc;
@@ -1181,18 +1457,7 @@ const RomanceNovelWriter = () => {
       const minWords = Math.floor(targetWordCount * 0.9);
       const maxWords = Math.floor(targetWordCount * 1.1);
 
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 4000,
-          messages: [
-            {
-              role: "user",
-              content: `You are a professional romance novelist writing a scene for a ${currentSubgenre?.name || 'romance'} novel${currentEra ? ` set in the ${currentEra.name}` : ''}.
+      const promptText = `You are a professional romance novelist writing a scene for a ${currentSubgenre?.name || 'romance'} novel${currentEra ? ` set in the ${currentEra.name}` : ''}.
 
 SCENE BEAT: ${beatTitle}
 
@@ -1210,21 +1475,24 @@ CRITICAL REQUIREMENTS:
 6. Stay in close third-person POV
 7. Meet the target word count of ${targetWordCount} words
 
-Write the prose now, ensuring it's between ${minWords} and ${maxWords} words:`
-            }
-          ],
-        })
+Write the prose now, ensuring it's between ${minWords} and ${maxWords} words:`;
+
+      const response = await fetch("/api/generate-prose", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: promptText })
       });
 
       const data = await response.json();
-      const proseText = data.content
-        .filter(item => item.type === "text")
-        .map(item => item.text)
-        .join("\n");
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to generate prose');
+      }
 
       setGeneratedProse(prev => ({
         ...prev,
-        [beatKey]: proseText
+        [beatKey]: data.text
       }));
     } catch (error) {
       console.error("Error generating prose:", error);
