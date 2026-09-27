@@ -2302,26 +2302,29 @@ ${prose}
                                   const beatKey = `${chapterIndex}-${sceneIndex}-${beatIndex}`;
                                   const isGenerating = generatingBeat === beatKey;
                                   const hasProse = generatedProse[beatKey];
+                                  const beatTitle = typeof beat === 'object' ? beat.beat : beat;
                                   // Calculate target word count for this beat
                                   const beatWordCount = Math.floor(scene.wordCount / scene.beats.length);
-                                  
+
                                   return (
                                     <div key={beatIndex} className="border-l-2 border-purple-300 pl-3 py-2">
                                       <div className="flex items-start gap-2 mb-2">
                                         <span className="text-pink-500 font-bold flex-shrink-0">Beat {beatIndex + 1}:</span>
                                         <span className="text-gray-800 font-semibold flex-1">
-                                          {typeof beat === 'object' ? beat.beat : beat}
+                                          {beatTitle}
                                         </span>
                                       </div>
-                                      {typeof beat === 'object' && beat.prompt && (
+                                      {beatTitle && (
                                         <div className="ml-7 mt-2 space-y-3">
-                                          <div className="p-3 bg-purple-50 rounded border border-purple-200">
-                                            <p className="text-sm font-semibold text-purple-900 mb-2">AI Writing Prompt:</p>
-                                            <p className="text-sm text-gray-700 leading-relaxed italic">
-                                              {beat.prompt}
-                                            </p>
-                                          </div>
-                                          
+                                          {typeof beat === 'object' && beat.prompt && (
+                                            <div className="p-3 bg-purple-50 rounded border border-purple-200">
+                                              <p className="text-sm font-semibold text-purple-900 mb-2">AI Writing Prompt:</p>
+                                              <p className="text-sm text-gray-700 leading-relaxed italic">
+                                                {beat.prompt}
+                                              </p>
+                                            </div>
+                                          )}
+
                                           <div className="flex items-center gap-3">
                                             <button
                                               onClick={() => generateBeatProse(chapterIndex, sceneIndex, beatIndex, beat, beatWordCount)}
